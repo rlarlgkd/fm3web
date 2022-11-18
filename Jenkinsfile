@@ -10,7 +10,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("rlarlgkd/fm3web", "-f back/${dockerfile} back")
+       app = docker.build("rlarlgkd/fm3web", "-f ./back/${dockerfile} ./back")
     }
 
     stage('Test image') {
