@@ -1,5 +1,6 @@
 node {
     def app
+    def dockerfile = 'dockerfile'
 
     stage('Clone repository') {
       
@@ -9,7 +10,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("rlarlgkd/fm3web")
+       app = docker.build("rlarlgkd/fm3web", "-f back/${dockerfile} back")
     }
 
     stage('Test image') {
