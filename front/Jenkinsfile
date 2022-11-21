@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("rlarlgkd/fm3front")
+       app = docker.build("rlarlgkd/fm3front", "-f front/Dockerfile .")
     }
 
     stage('Test image') {
@@ -29,6 +29,6 @@ node {
     
     stage('Trigger ManifestUpdate') {
                 echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                build job: 'manifestFront', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
 }
