@@ -17,9 +17,9 @@ ADD front/build ./build
 RUN rm /etc/nginx/conf.d/default.conf
 
 # host pc 의 nginx.conf 를 아래 경로에 복사
-COPY front/nginx.conf /etc/nginx/conf.d
+COPY ./front/nginx.conf /etc/nginx/conf.d
 
-COPY front/proxy_params /etc/nginx
+COPY ./front/proxy_params /etc/nginx
 
 # 80 포트 오픈
 EXPOSE 80
