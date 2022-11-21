@@ -6,10 +6,10 @@ COPY back/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Add source code
-ADD app /home/app
+ADD back/app /home/app
 # ADD migrations /home/migrations
-ADD requirements.txt /home
-ADD manage.py /home
+ADD back/requirements.txt /home
+ADD back/manage.py /home
 
 WORKDIR /home
 # Set environment variables
