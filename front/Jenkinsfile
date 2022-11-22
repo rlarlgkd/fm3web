@@ -1,16 +1,19 @@
 node {
     def app
-    agent {
-        docker {
-            image 'node:lts-bullseye-slim' 
-            args '-p 3000:3000' 
-        }
+    agent any
+    tools {
+        nodejs 'node'
     }
     
     stage('Clone repository') {
       
 
         checkout scm
+    }
+    stage('npm install') {
+        steps {
+            sh 'npm install && npm run build'
+        }
     }
 
     stage('Build image') {
@@ -24,17 +27,6 @@ node {
         app.inside {
             sh 'echo "Tests passed"'
         }
-    }
-
-    stage('npm') {
-
-        // nodejs(nodeJSInstallationName: 'node') { // 위의 설정에서 지정한 node 이름
-        // sh 'npm install && npm run build'
-        // }
-        steps {
-                sh 'npm install && npm run build'
-            }
-
     }
 
     stage('Push image') {
