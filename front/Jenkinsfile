@@ -5,7 +5,41 @@
 //         nodejs 'node'
 //     }
     
+//     stage('Clone repository') {
+      
 
+//         checkout scm
+//     }
+//     stage('npm install') {
+//         steps {
+//             sh 'npm install && npm run build'
+//         }
+//     }
+
+//     stage('Build image') {
+  
+//        app = docker.build("rlarlgkd/fm3front", "-f front/Dockerfile .")
+//     }
+
+//     stage('Test image') {
+  
+
+//         app.inside {
+//             sh 'echo "Tests passed"'
+//         }
+//     }
+
+//     stage('Push image') {
+        
+//         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+//             app.push("${env.BUILD_NUMBER}")
+//         }
+//     }
+    
+//     stage('Trigger ManifestUpdate') {
+//                 echo "triggering updatemanifestjob"
+//                 build job: 'manifestFront', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+//         }
 // }
 pipeline {
     agent { docker { image 'node:16.17.1-alpine' } }
@@ -13,42 +47,9 @@ pipeline {
         stage('build') {
             steps {
                 sh 'node --version'
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
-        stage('Clone repository') {
-      
-
-        checkout scm
-        }
-        stage('npm install') {
-            steps {
-                sh 'npm install && npm run build'
-            }
-        }
-
-        stage('Build image') {
-    
-        app = docker.build("rlarlgkd/fm3front", "-f front/Dockerfile .")
-        }
-
-        stage('Test image') {
-    
-
-            app.inside {
-                sh 'echo "Tests passed"'
-            }
-        }
-
-        stage('Push image') {
-            
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                app.push("${env.BUILD_NUMBER}")
-            }
-        }
-        
-        stage('Trigger ManifestUpdate') {
-                    echo "triggering updatemanifestjob"
-                    build job: 'manifestFront', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-            }   
     }
 }
