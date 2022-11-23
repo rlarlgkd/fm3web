@@ -52,7 +52,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'cd ./front'
+                // sh 'cd fm3web/front/package.json' 
                 sh 'node --version'
                 sh 'npm install'
                 sh 'npm run build'
