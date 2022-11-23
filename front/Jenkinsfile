@@ -52,7 +52,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'cd ./front' 
+                sh 'cd /home/vagrant/.jenkins/workspace/frontimage/front/.' 
                 sh 'node --version'
                 sh 'npm install'
                 sh 'npm run build'
