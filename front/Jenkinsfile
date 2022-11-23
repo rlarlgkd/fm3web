@@ -53,7 +53,7 @@ pipeline {
         stage('build') {
             steps {
                // sh 'cd /front/package.json' 
-               sh 'node --version'
+               sh 'node --version' // test
                // sh 'npm install'
                // sh 'npm run build'
             }
