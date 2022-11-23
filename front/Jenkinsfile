@@ -54,7 +54,7 @@ pipeline {
             steps {
                 sh 'cd /home/vagrant/.jenkins/workspace/frontimage/front/.' 
                 sh 'node --version'
-                sh 'npm cache clean'
+                sh 'npm cache clean --force'
                 sh 'npm install'
                 sh 'npm run build'
             }
