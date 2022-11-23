@@ -1,20 +1,10 @@
 node {
     def app
-    agent any
-    // tools {
-    //     nodejs 'node'
-    // }
     
     stage('Clone repository') {
       
-
         checkout scm
     }
-    // stage('npm install') {
-    //     steps {
-    //         sh 'npm install && npm run build'
-    //     }
-    // }
 
     stage('Build image') {
   
