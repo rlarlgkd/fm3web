@@ -2,7 +2,7 @@ from flask import request
 from flask_restx import Resource
 
 from ..util.dto import SubjectDto
-from ..service.subject_service import get_all_data, get_data_by_option, get_departments, get_updated_at
+from ..service.subject_service import get_all_data, get_data_by_option, get_departments
 
 api = SubjectDto.api
 _subject = SubjectDto.subject
@@ -51,4 +51,4 @@ class Updatedat(Resource):
   @api.doc('db 업데이트 시각을 조회')
   def get(self):
     """현db 업데이트 시각을 조회"""
-    return get_updated_at()
+    return get_()
