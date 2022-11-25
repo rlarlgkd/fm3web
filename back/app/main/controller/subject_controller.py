@@ -46,9 +46,9 @@ class Option(Resource):
     data = request.json
     return get_data_by_option(data,flag = 2)
   
-@api.route('/updatedat')
-class Updatedat(Resource):
-  @api.doc('db 업데이트 시각을 조회')
-  def get(self):
-    """현db 업데이트 시각을 조회"""
-    return get_()
+# @api.route('/updatedat')
+# class Updatedat(Resource):
+#   @api.doc('db 업데이트 시각을 조회')
+#   def get(self):
+#     """현db 업데이트 시각을 조회"""
+#     return get_()
