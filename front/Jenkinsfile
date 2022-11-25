@@ -1,63 +1,55 @@
-// node {
-//     def app
-//     agent any
-//     tools {
-//         nodejs 'node'
-//     }
+node {
+    def app
     
-//     stage('Clone repository') {
+    stage('Clone repository') {
       
+        checkout scm
+    }
 
-//         checkout scm
-//     }
-//     stage('npm install') {
-//         steps {
-//             sh 'npm install && npm run build'
-//         }
-//     }
-
-//     stage('Build image') {
+    stage('Build image') {
   
-//        app = docker.build("rlarlgkd/fm3front", "-f front/Dockerfile .")
-//     }
+       app = docker.build("rlarlgkd/fm3front", "-f front/Dockerfile .")
+    }
 
-//     stage('Test image') {
+    stage('Test image') {
   
 
-//         app.inside {
-//             sh 'echo "Tests passed"'
-//         }
-//     }
-
-//     stage('Push image') {
-        
-//         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-//             app.push("${env.BUILD_NUMBER}")
-//         }
-//     }
-    
-//     stage('Trigger ManifestUpdate') {
-//                 echo "triggering updatemanifestjob"
-//                 build job: 'manifestFront', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-//         }
-// }
-pipeline {
-    agent { docker { image 'node:16.17.1-alpine' } }
-    stages {
-        stage('Clone repository') {
-      
-            steps {
-            checkout scm
-            }
-        }
-        stage('build') {
-            steps {
-                sh 'cd /home/vagrant/.jenkins/workspace/frontimage/front/.' 
-                sh 'node --version'
-                sh 'npm cache clean --force'
-//                 sh 'npm install'
-                sh 'npm run build'
-            }
+        app.inside {
+            sh 'echo "Tests passed"'
         }
     }
+
+    stage('Push image') {
+        
+
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+            app.push("${env.BUILD_NUMBER}")
+
+        }
+    }
+    
+    stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'manifestFront', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+        }
 }
+// pipeline {
+//     // agent { docker { image 'node:16.17.1-alpine' } }
+//     agent any
+//     tools {nodejs "node"}
+//     stages {
+//         stage('Cloning Git') {
+//         steps {
+//             git 'https://github.com/rlarlgkd/fm3web.git'
+//         }
+//         }
+//         stage('build') {
+//             steps {
+//                //sh 'cd fm3web/front/' 
+//                sh 'node --version' // test
+//                //sh 'npm install'
+//                //sh 'npm run build'
+//             }
+//         }
+//     }
+// }

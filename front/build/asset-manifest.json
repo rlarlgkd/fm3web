@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/static/js/main.c883b16e.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.4cbeabfe.js",
+    "static/js/2.d43ff008.chunk.js": "/static/js/2.d43ff008.chunk.js",
+    "index.html": "/index.html",
+    "static/js/2.d43ff008.chunk.js.LICENSE.txt": "/static/js/2.d43ff008.chunk.js.LICENSE.txt",
+    "static/media/32.8c8fb4db.png": "/static/media/32.8c8fb4db.png",
+    "static/media/insta.5be46ff6.jpeg": "/static/media/insta.5be46ff6.jpeg",
+    "static/media/notion.6640969c.png": "/static/media/notion.6640969c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4cbeabfe.js",
+    "static/js/2.d43ff008.chunk.js",
+    "static/js/main.c883b16e.chunk.js"
+  ]
+}
