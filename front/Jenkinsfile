@@ -33,23 +33,3 @@ node {
                 build job: 'manifestFront', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
 }
-// pipeline {
-//     // agent { docker { image 'node:16.17.1-alpine' } }
-//     agent any
-//     tools {nodejs "node"}
-//     stages {
-//         stage('Cloning Git') {
-//         steps {
-//             git 'https://github.com/rlarlgkd/fm3web.git'
-//         }
-//         }
-//         stage('build') {
-//             steps {
-//                //sh 'cd fm3web/front/' 
-//                sh 'node --version' // test
-//                //sh 'npm install'
-//                //sh 'npm run build'
-//             }
-//         }
-//     }
-// }
