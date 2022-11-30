@@ -4,10 +4,8 @@ import sys
 import ssl
 # app 폴더를 패키지로 인식하게끔 path 등록
 sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/app')
-
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-
 from app import blueprint
 from app.main import create_app, db
 from app.main.model import user, user_subject, user_complete, issue #model을 정의한 폴더 import
@@ -22,7 +20,6 @@ app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 app.register_blueprint(blueprint)
 
 app.app_context().push()
-
 
 manager = Manager(app) #Flask-Script를 통해 모든 데이터베이스 마이그레이션 명령을 노출. dbMigrateCommandadd_commandmanager
 
