@@ -12,7 +12,7 @@ export const SidebarComponent = styled.div`
       return `60px`;
     }
   }};
-  background-color: #7b45e9;
+  background-color: red;
   transition: 0.2s ease;
   display: flex;
   flex-direction: column;
